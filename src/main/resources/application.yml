@@ -1,0 +1,24 @@
+spring:
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+    enabled: true
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        show_sql: true # system.out
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug # logger
+    org.hibernate.type: trace
