@@ -6,7 +6,8 @@ import lombok.Setter;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-@Getter @Setter
+@Getter
+@Setter
 @DiscriminatorValue("B")
 @Entity
 public class Book extends Item {

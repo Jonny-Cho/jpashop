@@ -8,12 +8,14 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class Category {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "category_id")
     private Long id;
 
@@ -35,7 +37,7 @@ public class Category {
     private List<Category> child = new ArrayList<>();
 
     // 연관관계 메서드
-    public void addChildCateogyr(Category child){
+    public void addChildCateogyr(Category child) {
         this.child.add(child);
         child.setParent(this);
     }
