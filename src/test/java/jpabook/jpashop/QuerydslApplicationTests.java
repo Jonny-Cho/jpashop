@@ -40,4 +40,25 @@ class QuerydslApplicationTests {
         assertThat(result).isEqualTo(member);
     }
 
+    @Test
+    public void startQuerydsl(){
+        //given
+        Member member = new Member();
+        member.setName("member1");
+        em.persist(member);
+
+        //when
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+        QMember m = QMember.member;
+
+        Member findMember = queryFactory
+                .select(m)
+                .from(m)
+                .where(m.name.eq("member1"))
+                .fetchOne();
+
+        //then
+        assertThat(findMember.getName()).isEqualTo("member1");
+    }
+
 }
