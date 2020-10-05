@@ -3,7 +3,6 @@ package jpabook.jpashop;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.QMember;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import static jpabook.jpashop.domain.QMember.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -46,18 +46,17 @@ class QuerydslApplicationTests {
     @Test
     public void startQuerydsl(){
         //given
-        Member member = new Member();
-        member.setName("member1");
-        em.persist(member);
+        Member m = new Member();
+        m.setName("member1");
+        em.persist(m);
+
+        queryFactory  = new JPAQueryFactory(em);
 
         //when
-        queryFactory  = new JPAQueryFactory(em);
-        QMember m = QMember.member;
-
         Member findMember = queryFactory
-                .select(m)
-                .from(m)
-                .where(m.name.eq("member1"))
+                .select(member)
+                .from(member)
+                .where(member.name.eq("member1"))
                 .fetchOne();
 
         //then
