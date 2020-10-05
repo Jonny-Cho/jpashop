@@ -3,6 +3,7 @@ package jpabook.jpashop;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.domain.QMember;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,8 @@ class QuerydslApplicationTests {
     @Autowired
     EntityManager em;
 
+    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+
     @Test
     public void contextLoads(){
         //given
@@ -26,11 +29,10 @@ class QuerydslApplicationTests {
         member.setName("jonny");
         em.persist(member);
 
-        JPAQueryFactory query = new JPAQueryFactory(em);
         QMember qMember = QMember.member;
         //when
 
-        Member result = query
+        Member result = queryFactory
                 .selectFrom(qMember)
                 .fetchOne();
 
@@ -48,7 +50,6 @@ class QuerydslApplicationTests {
         em.persist(member);
 
         //when
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QMember m = QMember.member;
 
         Member findMember = queryFactory
