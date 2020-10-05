@@ -20,7 +20,7 @@ class QuerydslApplicationTests {
     @Autowired
     EntityManager em;
 
-    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+    JPAQueryFactory queryFactory;
 
     @Test
     public void contextLoads(){
@@ -29,6 +29,7 @@ class QuerydslApplicationTests {
         member.setName("jonny");
         em.persist(member);
 
+        queryFactory  = new JPAQueryFactory(em);
         QMember qMember = QMember.member;
         //when
 
@@ -50,6 +51,7 @@ class QuerydslApplicationTests {
         em.persist(member);
 
         //when
+        queryFactory  = new JPAQueryFactory(em);
         QMember m = QMember.member;
 
         Member findMember = queryFactory
