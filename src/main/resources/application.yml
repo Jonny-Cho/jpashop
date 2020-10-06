@@ -15,8 +15,9 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        format_sql: true
+#        format_sql: true
         show_sql: false # system.out
+#        use_sql_comments: true
 
 logging:
   level:
