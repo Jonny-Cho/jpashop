@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.util.List;
+
 import static jpabook.jpashop.domain.QMember.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
