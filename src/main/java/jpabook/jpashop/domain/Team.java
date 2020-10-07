@@ -3,6 +3,7 @@ package jpabook.jpashop.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 @Getter @Setter
 @Entity
 @NoArgsConstructor
+@ToString(of = {"id", "name"})
 public class Team {
     @Id @GeneratedValue
     @Column(name = "team_id")
